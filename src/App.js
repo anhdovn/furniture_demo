@@ -1,20 +1,21 @@
 import { Canvas } from '@react-three/fiber';
-import Env from './components/Env';
+import Stage from './components/Stage';
+import Product from './components/Product';
+import { OrbitControls } from '@react-three/drei';
 function App() {
   return (
     <>
-    <Canvas
+      <Canvas
         camera={{
           fov: 50,
           near: 0.1,
           far: 2000,
-          position: [3, 1.2, 0],
-
+          position: [10, 10, 10],
         }}
       >
-        <ambientLight />
-        <Env />
-
+        <Product />
+        <Stage />
+        <OrbitControls />
       </Canvas>
     </>
   );
