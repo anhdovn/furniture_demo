@@ -1,8 +1,12 @@
 import { useGLTF } from '@react-three/drei';
 import React from 'react';
-
+import { useSnapshot } from 'valtio'
+import { state } from '../store';
 export default function Product(props) {
   const { nodes, materials } = useGLTF('models/model.glb');
+  const snap = useSnapshot(state)
+
+
   return (
     <group {...props} dispose={null}>
       <mesh

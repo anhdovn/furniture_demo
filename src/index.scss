@@ -18,11 +18,34 @@ html {
   font-size: 62.5%;
 }
 html,
-body,
-#root {
+body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+#root {
+  width: 100%;
+  height: 100%;
+}
+.configurator-container {
+  background: #e4e6e6;
+  min-height: calc(66.9vw - 22.57875%);
+  display: flex;
+
+  @media (min-width: 1025px) {
+    .canvas-container {
+      width: 66.25%;
+    }
+    .controls-wrapper {
+      width: 33.75%;
+    }
+  }
+  @media (max-width: 1024px) {
+    .canvas-container {
+      width: 100%;
+      aspect-ratio: calc(1272 / 850);
+    }
+  }
 }
