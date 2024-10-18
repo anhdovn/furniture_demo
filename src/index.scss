@@ -28,24 +28,33 @@ body {
 #root {
   width: 100%;
   height: 100%;
+  background: #cccdcd;
 }
 .configurator-container {
   background: #e4e6e6;
   min-height: calc(66.9vw - 22.57875%);
   display: flex;
-
-  @media (min-width: 1025px) {
-    .canvas-container {
+  .canvas-container {
+    @media (min-width: 1025px) {
       width: 66.25%;
     }
-    .controls-wrapper {
-      width: 33.75%;
-    }
-  }
-  @media (max-width: 1024px) {
-    .canvas-container {
+    @media (max-width: 1024px) {
       width: 100%;
       aspect-ratio: calc(1272 / 850);
+    }
+
+  }
+  .controls-wrapper {
+    @media (min-width: 1025px) {
+      width: 33.75%;
+    }
+    .box_colors {
+      button {
+        border: 1px solid #ccc;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
     }
   }
 }

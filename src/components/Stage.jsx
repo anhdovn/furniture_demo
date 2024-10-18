@@ -1,40 +1,31 @@
-import { useGLTF, BakeShadows } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import React from 'react';
 import { useControls } from 'leva';
 import { useThree, useFrame } from '@react-three/fiber';
 export default function Stage(props) {
-  const { nodes } = useGLTF('models/bg.glb');
-
+  const { nodes: node_bg } = useGLTF('models/bg.glb');
+  const { nodes: node_man, materials } = useGLTF('models/man.glb');
+  const colors = useControls({
+    bg_color: '#f3f3f3',
+    man_color: '#fff',
+  });
   return (
     <>
-      {/* Fill */}
-      <ambientLight intensity={0.5} />
-      {/* Main */}
-
-      <directionalLight
-        position={[1, 10, -2]}
-        intensity={1}
-        shadow-camera-far={70}
-        shadow-camera-left={-10}
-        shadow-camera-right={10}
-        shadow-camera-top={10}
-        shadow-camera-bottom={-10}
-        shadow-mapSize={[512, 512]}
-        castShadow
-      />
-
-      {/* Strip */}
-      <directionalLight position={[-10, -10, 2]} intensity={3} />
       {/* Ground */}
       <group {...props} scale={3} dispose={null}>
-        <mesh castShadow receiveShadow geometry={nodes.bg.geometry}>
-          <meshStandardMaterial color={[0.9, 0.9, 0.9]} />
+        <mesh receiveShadow geometry={node_bg.bg.geometry} material={node_bg.bg.geometry}>
+          <meshStandardMaterial color={colors.bg_color} />
         </mesh>
       </group>
-      {/* This freezes the shadow map, which is fast, but the model has to be static  */}
-      <BakeShadows />
+      {/* man */}
+      <group {...props} dispose={null}>
+        <mesh geometry={node_man.Ludek02.geometry} position={[-2.573, 0, 0.01]}>
+          <meshBasicMaterial color={colors.man_color} />
+        </mesh>
+      </group>
     </>
   );
 }
 
+useGLTF.preload('models/man.glb');
 useGLTF.preload('models/bg.glb');
